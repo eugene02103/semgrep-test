@@ -16,7 +16,7 @@ app.use(csrfProtection);
 app.get('/search', (req, res) => {
     const query = req.query.q;
     const sanitizedQuery = sanitizeInput(query);
-    res.send(<h1>Search results for: ${sanitizedQuery}</h1>);
+    res.send(`<h1>Search results for: ${sanitizedQuery}</h1>`);
 });
 
 // SQL Injection 취약점 수정: Use parameterized queries to prevent SQL injection
