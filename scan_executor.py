@@ -111,7 +111,7 @@ def finalize_scan():
     """스캔을 완료하고 상태를 업데이트합니다."""
     set_scan_completed()
 
-def execute_security_scan(repo_url, selected_branch, final_token, enable_semgrep, enable_safety, config_option):
+def execute_security_scan(repo_url, selected_branch, final_token, enable_semgrep, enable_safety, config_option, scan_memo=""):
     """
     전체 보안 스캔을 실행합니다.
     
@@ -129,6 +129,9 @@ def execute_security_scan(repo_url, selected_branch, final_token, enable_semgrep
     try:
         # 1. 상태 초기화
         reset_scan_state()
+        
+        # 2. 스캔 메모 저장
+        st.session_state.current_scan_memo = scan_memo
         
         # 2. 임시 디렉토리 정리 및 생성
         cleanup_temp_directory()
